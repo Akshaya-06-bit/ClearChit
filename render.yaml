@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: clearchit
+    runtime: docker
+    plan: starter
+    region: singapore
+    healthCheckPath: /api/health
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: clearchit-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: clearchit-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: clearchit-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: clearchit-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: clearchit-db
+          property: password
+      # Render generates a random 256-bit Base64 secret once and keeps it.
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DDL_AUTO
+        value: update
+      - key: SHOW_SQL
+        value: "false"
+
+databases:
+  - name: clearchit-db
+    databaseName: clearchit
+    user: clearchit_user
+    plan: basic-256mb
+    region: singapore

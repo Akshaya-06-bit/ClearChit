@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102d2b">
+  <meta name="description" content="ClearChit — transparent, auditable chit fund management.">
+  <title>ClearChit — Transparent Chit Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <section id="auth-screen" class="auth-layout">
+    <div class="auth-brand">
+      <a class="brand brand-light" href="#"><span class="brand-mark">C</span><span>clear<span class="brand-accent">chit</span></span></a>
+      <div class="auth-pitch">
+        <span class="eyebrow">FINANCIAL CLARITY, BY DESIGN</span>
+        <h1>Every contribution.<br><em>Every decision.</em><br>Accounted for.</h1>
+        <p>A clearer way to manage traditional chit funds, from monthly contributions to transparent settlements.</p>
+        <div class="trust-row"><span class="trust-dot"></span> Built for visibility and accountability</div>
+      </div>
+      <div class="auth-foot">ClearChit · Project demonstration</div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-card">
+        <div class="auth-mobile-brand brand"><span class="brand-mark">C</span><span>clearchit</span></div>
+        <div class="auth-tabs"><button class="auth-tab active" data-auth-tab="login">Sign in</button><button class="auth-tab" data-auth-tab="register">Create account</button></div>
+        <div id="auth-error" class="inline-error hidden"></div>
+        <form id="login-form" class="auth-form">
+          <h2>Welcome back</h2><p class="muted">Sign in to continue to your workspace.</p>
+          <label>Email address<input name="email" type="email" placeholder="you@example.com" autocomplete="email" required></label>
+          <label>Password<input name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required></label>
+          <button class="btn btn-primary btn-full" type="submit">Sign in <span>→</span></button>
+        </form>
+        <form id="register-form" class="auth-form hidden">
+          <h2>Create your account</h2><p class="muted">Get started with your ClearChit workspace.</p>
+          <label>Full name<input name="name" type="text" placeholder="Your full name" autocomplete="name" required></label>
+          <label>Email address<input name="email" type="email" placeholder="you@example.com" autocomplete="email" required></label>
+          <label>Password<input name="password" type="password" minlength="8" placeholder="At least 8 characters" autocomplete="new-password" required></label>
+          <button class="btn btn-primary btn-full" type="submit">Create account <span>→</span></button>
+        </form>
+        <p class="auth-note">By continuing, you agree to use this demo responsibly. No real money is transferred.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="app-screen" class="app-layout hidden">
+    <aside class="sidebar">
+      <a class="brand sidebar-brand" href="#dashboard"><span class="brand-mark">C</span><span>clear<span class="brand-accent">chit</span></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">▦</span> Overview</button>
+        <button class="nav-item" data-page="groups"><span class="nav-icon">◫</span> Chit groups</button>
+        <button class="nav-item" data-page="wallet"><span class="nav-icon">◈</span> My wallet</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-help"><span class="help-icon">?</span><div><strong>Need a hand?</strong><small>Explore your workspace</small></div></div>
+        <button id="logout-btn" class="logout-btn"><span>↪</span> Sign out</button>
+        <div class="sidebar-version">CLEARCHIT <span>·</span> DEMO</div>
+      </div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb-current">Overview</strong></div><div class="topbar-user"><div class="user-avatar" id="user-avatar">U</div><div class="user-meta"><strong id="user-name">User</strong><small id="user-email">user@example.com</small></div><span class="role-chip" id="user-role">MEMBER</span></div></header>
+      <div class="page-wrap">
+        <section id="page-dashboard" class="page">
+          <div class="page-heading"><div><span class="eyebrow">YOUR FINANCIAL OVERVIEW</span><h1>Good to see you, <span id="welcome-name">there</span>.</h1><p>Here's what's happening across your chit groups.</p></div><button class="btn btn-primary" data-action="new-group">＋ Create a group</button></div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>All groups</span><span class="stat-icon mint">◫</span></div><strong id="stat-groups">—</strong><small>Groups you can view</small></article>
+            <article class="stat-card"><div class="stat-top"><span>Active groups</span><span class="stat-icon blue">↗</span></div><strong id="stat-active">—</strong><small>Currently in progress</small></article>
+            <article class="stat-card"><div class="stat-top"><span>My member ID</span><span class="stat-icon sand">◉</span></div><strong id="stat-member">—</strong><small>Use this when adding yourself</small></article>
+          </div>
+          <div class="section-heading"><div><h2>Your chit groups</h2><p>Keep every group and its activity in one place.</p></div><button class="text-button" data-page="groups">View all groups <span>→</span></button></div>
+          <div id="dashboard-groups" class="group-grid"><div class="loading-card">Loading your workspace…</div></div>
+          <div class="bottom-note"><span class="note-icon">✦</span><div><strong>Transparency at every step</strong><p>Track group activity, wallet movements, contributions and settlements from one place.</p></div></div>
+        </section>
+
+        <section id="page-groups" class="page hidden">
+          <div class="page-heading"><div><span class="eyebrow">GROUP MANAGEMENT</span><h1>Chit groups</h1><p>Explore groups, manage membership and review activity.</p></div><button class="btn btn-primary" data-action="new-group">＋ Create a group</button></div>
+          <div class="toolbar"><div class="search-box"><span>⌕</span><input id="group-search" type="search" placeholder="Search by group name…"></div><span id="group-count" class="muted"></span></div>
+          <div id="all-groups" class="group-grid"><div class="loading-card">Loading groups…</div></div>
+        </section>
+
+        <section id="page-wallet" class="page hidden">
+          <div class="page-heading"><div><span class="eyebrow">YOUR MONEY, CLEARLY TRACKED</span><h1>My wallet</h1><p>Manage your demo wallet and review every transaction.</p></div></div>
+          <div class="wallet-hero"><div><span class="wallet-label">AVAILABLE BALANCE</span><h2 id="wallet-balance">₹ —</h2><p>Member ID <strong id="wallet-member-id">—</strong></p></div><div class="wallet-emblem">◈</div></div>
+          <div class="wallet-actions-grid"><form id="recharge-form" class="panel form-panel"><div class="panel-heading"><div><span class="panel-icon mint">＋</span><h3>Add demo funds</h3></div></div><p class="muted">Increase your wallet balance for testing contributions.</p><label>Amount (₹)<input name="amount" type="number" min="1" step="0.01" placeholder="5000" required></label><button class="btn btn-primary" type="submit">Add funds</button></form><form id="withdraw-form" class="panel form-panel"><div class="panel-heading"><div><span class="panel-icon sand">↗</span><h3>Withdraw demo funds</h3></div></div><p class="muted">Withdraw available funds from your demo wallet.</p><label>Amount (₹)<input name="amount" type="number" min="1" step="0.01" placeholder="1000" required></label><button class="btn btn-outline" type="submit">Withdraw funds</button></form></div>
+          <div class="panel transaction-panel"><div class="section-heading"><div><h2>Recent transactions</h2><p>Your wallet activity ledger.</p></div><button class="text-button" id="refresh-wallet">Refresh ↻</button></div><div id="wallet-transactions" class="table-wrap"><div class="empty-state">Loading transactions…</div></div></div>
+        </section>
+
+        <section id="page-detail" class="page hidden">
+          <button class="back-link" id="back-to-groups">← Back to groups</button>
+          <div id="group-detail-content"><div class="loading-card">Loading group details…</div></div>
+        </section>
+      </div>
+      <footer class="app-footer"><span>© 2026 ClearChit</span><span>Built for transparent chit fund management</span></footer>
+    </main>
+  </div>
+
+  <dialog id="group-dialog" class="modal"><form id="group-form" method="dialog"><div class="modal-header"><div><span class="eyebrow">NEW WORKSPACE</span><h2>Create a chit group</h2><p>Set the contribution, capacity and schedule.</p></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div><div id="group-form-error" class="inline-error hidden"></div><div class="form-grid"><label>Group name<input name="name" required maxlength="120" placeholder="e.g. Family Savings Circle"></label><label>Chit value (₹)<input name="chitValue" type="number" min="1" step="0.01" required placeholder="100000"></label><label>Monthly contribution (₹)<input name="monthlyContribution" type="number" min="1" step="0.01" required placeholder="5000"></label><label>Organizer commission (%)<input name="organiserCommissionRate" type="number" min="0" max="100" step="0.01" required value="5"></label><label>Maximum members<input name="maxMembers" type="number" min="2" step="1" required value="20"></label><label>Duration (months)<input name="durationMonths" type="number" min="1" step="1" required value="20"></label><label class="full-field">Start date<input name="startDate" type="date" required></label></div><div class="modal-actions"><button class="btn btn-outline" type="button" data-close-dialog>Cancel</button><button class="btn btn-primary" type="submit">Create group</button></div></form></dialog>
+  <dialog id="action-dialog" class="modal modal-small"><form id="action-form" method="dialog"><div class="modal-header"><div><span class="eyebrow" id="action-eyebrow">GROUP ACTION</span><h2 id="action-title">Action</h2><p id="action-description"></p></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div><div id="action-fields"></div><div id="action-error" class="inline-error hidden"></div><div class="modal-actions"><button class="btn btn-outline" type="button" data-close-dialog>Cancel</button><button class="btn btn-primary" type="submit" id="action-submit">Continue</button></div></form></dialog>
+  <script src="/app.js" defer></script>
+</body>
+</html>
