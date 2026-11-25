@@ -1,4 +1,4 @@
-# ClearChit
+# ClearChit LiveDemo Link : https://clearchit.onrender.com/
 
 **ClearChit** is a backend-first, full-stack demonstration platform for transparent and auditable traditional chit fund management. It combines a Spring Boot REST API with a responsive browser UI, PostgreSQL persistence, JWT authentication, and Redis configuration.
 
